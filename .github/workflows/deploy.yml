@@ -10,19 +10,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout your code
+      # Step 1: Checkout your repository
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Step 2: Install Cloud Foundry CLI using official installer
+      # Step 2: Install Cloud Foundry CLI
       - name: Install Cloud Foundry CLI
         run: |
-          wget -q -O cf-install.sh "https://packages.cloudfoundry.org/stable?release=linux64&source=github"
-          chmod +x cf-install.sh
-          sudo ./cf-install.sh
+          # Download CF CLI tarball from GitHub release
+          curl -L -o cf-cli.tgz https://github.com/cloudfoundry/cli/releases/download/v8.4.0/cf8-cli_8.4.0_linux_x86-64.tgz
+          mkdir cf-cli
+          tar -xvzf cf-cli.tgz -C cf-cli
+          sudo mv cf-cli/cf8-cli_8.4.0_linux_x86-64/cf /usr/local/bin/cf
           cf version
 
-      # Step 3: Deploy your app to SAP CF
+      # Step 3: Deploy your app to SAP Cloud Foundry
       - name: Deploy app to SAP CF
         env:
           CF_API: https://api.cf.us10-001.hana.ondemand.com
@@ -31,10 +33,10 @@ jobs:
           CF_ORG: 7e62d5b9trial
           CF_SPACE: dev
         run: |
-          # Target SAP CF
+          # Target the SAP CF API
           cf api $CF_API
           cf auth "$CF_USERNAME" "$CF_PASSWORD"
           cf target -o "$CF_ORG" -s "$CF_SPACE"
 
-          # Push your app
-          cf push warehouse-tracker --no-cache
+          # Push the app (webapp folder as root)
+          cf push warehouse-tracker -p ./webapp --no-cache
