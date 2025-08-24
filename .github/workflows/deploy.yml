@@ -31,4 +31,4 @@ jobs:
           cf api $CF_API
           cf auth $CF_USERNAME $CF_PASSWORD
           cf target -o $CF_ORG -s $CF_SPACE
-          cf push warehouse-tracker --no-cache
+          cf push warehouse-tracker -f webapp/manifest.yml
