@@ -1,0 +1,62 @@
+<mvc:View
+  controllerName="inventory.app.controller.Inventory"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  displayBlock="true">
+
+  <Shell>
+    <App>
+      <Page title="Warehouse Inventory Tracker" showFooter="true">
+
+        <!-- Search Toolbar -->
+        <subHeader>
+          <Toolbar>
+            <Title text="Filter by Material" />
+            <SearchField
+              placeholder="Search Material"
+              liveChange=".onSearch"
+              width="300px" />
+            <ToolbarSpacer/>
+            <Button icon="sap-icon://refresh" text="Reset" press=".onReset"/>
+          </Toolbar>
+        </subHeader>
+
+        <!-- Page Content -->
+        <VBox class="sapUiSmallMargin">
+          <Panel headerText="Bin-wise Inventory Status" expandable="false" class="sapUiSmallMarginBottom">
+            <Table id="inventoryTable" items="{/Inventory}" growing="true" growingScrollToLoad="true" inset="false">
+              <columns>
+                <Column><Text text="Bin ID"/></Column>
+                <Column><Text text="Material"/></Column>
+                <Column><Text text="Quantity"/></Column>
+                <Column><Text text="Movement"/></Column>
+                <Column><Text text="Plant"/></Column>
+              </columns>
+              <items>
+                <ColumnListItem>
+                  <cells>
+                    <Text text="{BinID}" />
+                    <Text text="{Material}" />
+                    <ObjectNumber number="{Quantity}" unit="Units"/>
+                    <Text text="{Movement}" />
+                    <Text text="{Plant}" />
+                  </cells>
+                </ColumnListItem>
+              </items>
+            </Table>
+          </Panel>
+        </VBox>
+
+        <!-- Footer -->
+        <footer>
+          <Bar>
+            <contentRight>
+              <Button text="Export to Excel" type="Emphasized" icon="sap-icon://download" press=".onExport" />
+            </contentRight>
+          </Bar>
+        </footer>
+
+      </Page>
+    </App>
+  </Shell>
+</mvc:View>
