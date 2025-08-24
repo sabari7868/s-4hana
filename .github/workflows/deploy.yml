@@ -13,11 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Cloud Foundry CLI
+      - name: Install Cloud Foundry CLI
         run: |
-          curl -L "https://packages.cloudfoundry.org/stable/cloudfoundry-cli_8.0.0_linux_x86-64.tgz" -o cf-cli.tgz
+          curl -L -o cf-cli.tgz https://github.com/cloudfoundry/cli/releases/download/v8.4.0/cf8-cli_8.4.0_linux_x86-64.tgz
           mkdir cf-cli
-          tar -xvzf cf-cli.tgz -C cf-cli
+          tar -xzf cf-cli.tgz -C cf-cli
           sudo mv cf-cli/cf /usr/local/bin/cf
 
       - name: Deploy to Cloud Foundry
