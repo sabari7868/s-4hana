@@ -10,17 +10,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout code
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      # Step 2: Log in to Cloud Foundry and deploy
+      - name: Install Cloud Foundry CLI
+        run: |
+          # Download official CF CLI install script
+          curl -L https://packages.cloudfoundry.org/stable?release=linux64&source=github -o cf-install.sh
+          chmod +x cf-install.sh
+          sudo ./cf-install.sh
+          cf version
+
       - name: Deploy to Cloud Foundry
-        uses: cloudfoundry/cf-action@v1
-        with:
-          api: https://api.cf.us10-001.hana.ondemand.com
-          username: ${{ secrets.CF_USERNAME }}
-          password: ${{ secrets.CF_PASSWORD }}
-          org: 7e62d5b9trial
-          space: dev
-          command: push warehouse-tracker --no-cache
+        env:
+          CF_API: https://api.cf.us10-001.hana.ondemand.com
+          CF_USERNAME: ${{ secrets.CF_USERNAME }}
+          CF_PASSWORD: ${{ secrets.CF_PASSWORD }}
+          CF_ORG: 7e62d5b9trial
+          CF_SPACE: dev
+        run: |
+          cf api $CF_API
+          cf auth $CF_USERNAME $CF_PASSWORD
+          cf target -o $CF_ORG -s $CF_SPACE
+          cf push warehouse-tracker --no-cache
