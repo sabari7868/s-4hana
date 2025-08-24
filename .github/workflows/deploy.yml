@@ -10,17 +10,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout your repository
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # Step 2: Install Cloud Foundry CLI
       - name: Install Cloud Foundry CLI
         run: |
-          curl -L -o cf-cli.tgz https://github.com/cloudfoundry/cli/releases/download/v8.4.1/cf8-cli_8.4.1_linux_x86-64.tgz
+          curl -L -o cf-cli.tgz https://github.com/cloudfoundry/cli/releases/download/v8.4.1/cf8-cli_8.4.1_linux-x86-64.tgz?raw=true
           mkdir cf-cli
           tar -xzf cf-cli.tgz -C cf-cli
-          sudo mv cf-cli/cf8-cli_8.4.1_linux_x86-64/cf /usr/local/bin/cf
+          sudo mv cf-cli/cf8-cli_8.4.1_linux-x86-64/cf /usr/local/bin/cf
           cf version
 
+      # Step 3: Deploy your app to Cloud Foundry
       - name: Deploy App to Cloud Foundry
         env:
           CF_API: https://api.cf.us10-001.hana.ondemand.com
@@ -29,7 +32,9 @@ jobs:
           CF_ORG: 7e62d5b9trial
           CF_SPACE: dev
         run: |
+          echo "Logging into Cloud Foundry..."
           cf api $CF_API
           cf auth "$CF_USERNAME" "$CF_PASSWORD"
           cf target -o "$CF_ORG" -s "$CF_SPACE"
+          echo "Pushing warehouse-tracker app..."
           cf push warehouse-tracker --no-cache
