@@ -1,5 +1,6 @@
 name: Deploy to Cloud Foundry
 
+# Trigger workflow on push to main branch
 on:
   push:
     branches:
@@ -10,17 +11,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout your repository
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # Step 2: Install Cloud Foundry CLI
       - name: Install Cloud Foundry CLI
         run: |
-          # Download official CF CLI install script
-          curl -L https://packages.cloudfoundry.org/stable?release=linux64&source=github -o cf-install.sh
+          curl -L "https://packages.cloudfoundry.org/stable?release=linux64-binary&source=github" -o cf-install.sh
           chmod +x cf-install.sh
-          sudo ./cf-install.sh
+          ./cf-install.sh
           cf version
 
+      # Step 3: Deploy your app to Cloud Foundry
       - name: Deploy to Cloud Foundry
         env:
           CF_API: https://api.cf.us10-001.hana.ondemand.com
