@@ -1,4 +1,3 @@
-
 name: Deploy to Cloud Foundry
 
 on:
@@ -16,9 +15,10 @@ jobs:
 
       - name: Set up Cloud Foundry CLI
         run: |
-          wget -q https://packages.cloudfoundry.org/stable?release=linux64 -O cf-cli.tgz
-          tar -xzf cf-cli.tgz
-          sudo mv cf /usr/local/bin
+          curl -L "https://packages.cloudfoundry.org/stable?release=linux64&source=github" -o cf-cli.tgz
+          mkdir cf-cli
+          tar -xvzf cf-cli.tgz -C cf-cli
+          sudo mv cf-cli/cf /usr/local/bin/cf
 
       - name: Deploy to Cloud Foundry
         env:
@@ -29,6 +29,6 @@ jobs:
           CF_SPACE: dev
         run: |
           cf api $CF_API
-          cf auth $CF_USERNAME $CF_PASSWORD
-          cf target -o $CF_ORG -s $CF_SPACE
+          cf auth "$CF_USERNAME" "$CF_PASSWORD"
+          cf target -o "$CF_ORG" -s "$CF_SPACE"
           cf push --no-cache
