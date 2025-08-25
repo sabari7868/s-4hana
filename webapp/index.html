@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Warehouse Inventory Tracker</title>
 
-    <!-- Load SAPUI5 first -->
-    <script
-      id="sap-ui-bootstrap"
-      src="https://sapui5.hana.ondemand.com/1.108.20/resources/sap-ui-core.js"
-      data-sap-ui-theme="sap_fiori_3"
-      data-sap-ui-libs="sap.m,sap.ui.core,sap.ui.model.odata.v2"
-      data-sap-ui-resourceroots='{"inventory.app": "./"}'
-      data-sap-ui-async="true">
+<head>
+  <meta charset="UTF-8" />
+  <title>Warehouse Inventory Tracker</title>
+
+  <!-- Load SAPUI5 first -->
+  <script id="sap-ui-bootstrap" src="https://sapui5.hana.ondemand.com/1.108.20/resources/sap-ui-core.js"
+    data-sap-ui-theme="sap_fiori_3" data-sap-ui-libs="sap.m,sap.ui.core,sap.ui.model.odata.v2"
+    data-sap-ui-resourceroots='{"inventory.app": "./"}' data-sap-ui-async="true">
     </script>
 
-    <!-- Then call sap.* APIs only after UI5 is ready -->
-    <script>
-      window['sap-ui-config'] = window['sap-ui-config'] || {};
+  <!-- Then call sap.* APIs only after UI5 is ready -->
+  <script>
+    if (window.sap && sap.ui && sap.ui.getCore) {
       sap.ui.getCore().attachInit(function () {
         new sap.ui.core.ComponentContainer({
           name: "inventory.app",
@@ -24,10 +21,15 @@
           height: "100%"
         }).placeAt("content");
       });
-    </script>
-  </head>
+    } else {
+      console.error("SAPUI5 not loaded.");
+    }
 
-  <body class="sapUiBody" id="content">
-    <div id="content"></div>
-  </body>
+  </script>
+</head>
+
+<body class="sapUiBody" id="content">
+  <div id="content"></div>
+</body>
+
 </html>
