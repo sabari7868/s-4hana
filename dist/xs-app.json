@@ -1,0 +1,12 @@
+{
+  "welcomeFile": "/index.html",
+  "routes": [
+    {
+      "source": "^/sap-api/(.*)$",
+      "target": "/$1",
+      "destination": "SAP_MATERIAL_STOCK_API",
+      "authenticationType": "None",
+      "csrfProtection": false
+    }
+  ]
+}
