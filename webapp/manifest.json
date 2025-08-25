@@ -15,30 +15,16 @@
           "odataVersion": "2.0"
         }
       }
-    },
-    "sourceTemplate": {
-      "id": "ui5template.basicSAPUI5ApplicationProject",
-      "version": "1.0.0"
     }
   },
   "sap.ui": {
     "technology": "UI5",
-    "icons": {
-      "icon": "",
-      "favIcon": "",
-      "phone": "",
-      "phone@2": "",
-      "tablet": "",
-      "tablet@2": ""
-    },
     "deviceTypes": {
       "desktop": true,
       "tablet": true,
       "phone": true
     },
-    "supportedThemes": [
-      "sap_fiori_3"
-    ]
+    "supportedThemes": ["sap_fiori_3"]
   },
   "sap.ui5": {
     "rootView": {
@@ -50,8 +36,7 @@
       "minUI5Version": "1.60",
       "libs": {
         "sap.m": {},
-        "sap.ui.core": {},
-        "sap.ui.model.odata.v2": {}
+        "sap.ui.core": {}
       }
     },
     "models": {
@@ -74,9 +59,6 @@
         "viewPath": "inventory.app.view",
         "controlId": "app",
         "controlAggregation": "pages",
-        "bypassed": {
-          "target": "notFound"
-        },
         "async": true
       },
       "routes": [
