@@ -11,10 +11,9 @@ applications:
   instances: 1
   path: dist
   buildpacks:
-    - https://github.com/cloudfoundry/staticfile-buildpack.git
+    - https://github.com/cloudfoundry/html5-buildpack.git
   services:
     - SAP_MATERIAL_STOCK_API
-
 
 
 
