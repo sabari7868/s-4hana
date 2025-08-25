@@ -1,0 +1,79 @@
+{
+  "sap.app": {
+    "id": "inventory.app",
+    "type": "application",
+    "title": "Warehouse Inventory Tracker",
+    "description": "Track real-time warehouse stock from S/4HANA.",
+    "applicationVersion": {
+      "version": "1.0.0"
+    },
+    "dataSources": {
+      "MaterialStock": {
+        "uri": "/destinations/SAP_MATERIAL_STOCK_API/sap/opu/odata/sap/API_MATERIAL_STOCK_SRV/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    },
+    "supportedThemes": ["sap_fiori_3"]
+  },
+  "sap.ui5": {
+    "rootView": {
+      "viewName": "inventory.app.view.Inventory",
+      "type": "XML",
+      "id": "mainView"
+    },
+    "dependencies": {
+      "minUI5Version": "1.60",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "models": {
+      "": {
+        "dataSource": "MaterialStock",
+        "preload": true,
+        "settings": {
+          "defaultBindingMode": "TwoWay"
+        }
+      }
+    },
+    "resources": {
+      "css": [],
+      "js": []
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "viewPath": "inventory.app.view",
+        "controlId": "app",
+        "controlAggregation": "pages",
+        "async": true
+      },
+      "routes": [
+        {
+          "pattern": "",
+          "name": "main",
+          "target": "Inventory"
+        }
+      ],
+      "targets": {
+        "Inventory": {
+          "viewName": "Inventory",
+          "viewLevel": 1
+        }
+      }
+    }
+  }
+}

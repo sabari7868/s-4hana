@@ -1,0 +1,25 @@
+{
+  "Inventory": [
+    {
+      "BinID": "BIN001",
+      "Material": "Motor Coil",
+      "Quantity": 150,
+      "Movement": "Inbound",
+      "Plant": "PLANT1"
+    },
+    {
+      "BinID": "BIN002",
+      "Material": "Sensor",
+      "Quantity": 45,
+      "Movement": "Outbound",
+      "Plant": "PLANT1"
+    },
+    {
+      "BinID": "BIN003",
+      "Material": "Pump Valve",
+      "Quantity": 78,
+      "Movement": "Transfer",
+      "Plant": "PLANT2"
+    }
+  ]
+}
