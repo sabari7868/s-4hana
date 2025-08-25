@@ -1,7 +1,16 @@
+# applications:
+# - name: warehouse-tracker
+#   memory: 128M
+#   instances: 1
+#   path: webapp
+#   buildpacks:
+#     - https://github.com/cloudfoundry/staticfile-buildpack.git
 applications:
 - name: warehouse-tracker
-  memory: 128M
+  memory: 512M          # Increase memory for real-time OData
   instances: 1
   path: webapp
   buildpacks:
     - https://github.com/cloudfoundry/staticfile-buildpack.git
+  services:
+    - SAP_MATERIAL_STOCK_API   # Bind the destination service here
