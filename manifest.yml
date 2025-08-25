@@ -1,18 +1,9 @@
-# applications:
-# - name: warehouse-tracker
-#   memory: 128M
-#   instances: 1
-#   path: webapp
-#   buildpacks:
-#     - https://github.com/cloudfoundry/staticfile-buildpack.git
-
-
 applications:
 - name: warehouse-tracker
   memory: 512M
   instances: 1
-  path: webapp
+  path: webapp               # <- not dist
   buildpacks:
-    - staticfile_buildpack
+    - https://github.com/cloudfoundry/staticfile-buildpack.git
   services:
     - SAP_MATERIAL_STOCK_API
