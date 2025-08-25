@@ -1,20 +1,25 @@
 {
   "sap.app": {
-    "id": "inventoryapp",
+    "id": "inventory",
     "type": "application",
-    "title": "Inventory App"
+    "title": "Inventory Management",
+    "description": "UI5 Inventory Demo with JSONModel"
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {},
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
   },
   "sap.ui5": {
     "rootView": {
-      "viewName": "inventoryapp.view.Inventory",
+      "viewName": "inventory.view.App",
       "type": "XML",
+      "async": true,
       "id": "app"
-    },
-    "models": {
-      "": {
-        "type": "sap.ui.model.json.JSONModel",
-        "uri": "model/inventory.json"
-      }
     }
   }
 }

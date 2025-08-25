@@ -1,23 +1,39 @@
 <mvc:View
-  controllerName="inventoryapp.controller.Inventory"
   xmlns:mvc="sap.ui.core.mvc"
-  xmlns="sap.m">
-
-  <Page title="Inventory Overview">
+  xmlns="sap.m"
+  controllerName="inventory.controller.App">
+  
+  <Page title="Inventory Management">
     <content>
-      <List items="{/Inventory}">
-        <CustomListItem>
-          <HBox justifyContent="SpaceBetween" alignItems="Center">
-            <VBox>
-              <Title text="{Material}" />
-              <ObjectAttribute text="Bin: {BinID}" />
-              <ObjectAttribute text="Plant: {Plant}" />
-              <ObjectAttribute text="Movement: {Movement}" />
-            </VBox>
-            <ObjectNumber number="{Quantity}" unit="Qty"/>
-          </HBox>
-        </CustomListItem>
-      </List>
+      <Table
+        id="inventoryTable"
+        items="{inventory>/Inventory}">
+        <headerToolbar>
+          <Toolbar>
+            <Title text="Inventory Items" level="H2"/>
+            <ToolbarSpacer/>
+            <Button text="Refresh" press=".onRefresh"/>
+          </Toolbar>
+        </headerToolbar>
+        <columns>
+          <Column><Text text="Bin ID"/></Column>
+          <Column><Text text="Material"/></Column>
+          <Column><Text text="Quantity"/></Column>
+          <Column><Text text="Movement"/></Column>
+          <Column><Text text="Plant"/></Column>
+        </columns>
+        <items>
+          <ColumnListItem>
+            <cells>
+              <Text text="{inventory>BinID}"/>
+              <Text text="{inventory>Material}"/>
+              <ObjectNumber number="{inventory>Quantity}" unit="pcs"/>
+              <Text text="{inventory>Movement}"/>
+              <Text text="{inventory>Plant}"/>
+            </cells>
+          </ColumnListItem>
+        </items>
+      </Table>
     </content>
   </Page>
 </mvc:View>
