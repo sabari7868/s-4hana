@@ -3,17 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <title>Warehouse Inventory Tracker</title>
-<script
-  id="sap-ui-bootstrap"
-  src="https://sapui5.hana.ondemand.com/1.108.20/resources/sap-ui-core.js"
-  data-sap-ui-theme="sap_fiori_3"
-  data-sap-ui-libs="sap.m,sap.ui.core,sap.ui.model.odata.v2"
-  data-sap-ui-resourceroots='{"inventory.app": "./"}'
-  data-sap-ui-async="true">
-</script>
 
+    <!-- Load SAPUI5 first -->
+    <script
+      id="sap-ui-bootstrap"
+      src="https://sapui5.hana.ondemand.com/1.108.20/resources/sap-ui-core.js"
+      data-sap-ui-theme="sap_fiori_3"
+      data-sap-ui-libs="sap.m,sap.ui.core,sap.ui.model.odata.v2"
+      data-sap-ui-resourceroots='{"inventory.app": "./"}'
+      data-sap-ui-async="true">
+    </script>
 
+    <!-- Then call sap.* APIs only after UI5 is ready -->
     <script>
+      window['sap-ui-config'] = window['sap-ui-config'] || {};
       sap.ui.getCore().attachInit(function () {
         new sap.ui.core.ComponentContainer({
           name: "inventory.app",
@@ -23,5 +26,8 @@
       });
     </script>
   </head>
-  <body class="sapUiBody" id="content"></body>
+
+  <body class="sapUiBody" id="content">
+    <div id="content"></div>
+  </body>
 </html>
