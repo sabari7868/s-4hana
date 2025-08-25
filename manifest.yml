@@ -9,12 +9,12 @@ applications:
 - name: warehouse-tracker
   memory: 128M
   instances: 1
-  default-route: true
   path: dist
   buildpacks:
-    - https://github.com/cloudfoundry/html5-buildpack.git
+    - https://github.com/cloudfoundry/staticfile-buildpack.git
   services:
     - SAP_MATERIAL_STOCK_API
+
 
 
 
