@@ -3,19 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <title>Warehouse Inventory Tracker</title>
-
-    <!-- ✅ Load SAPUI5 from CDN (not your server) -->
     <script
       id="sap-ui-bootstrap"
       src="https://sapui5.hana.ondemand.com/1.120.0/resources/sap-ui-core.js"
       data-sap-ui-theme="sap_fiori_3"
       data-sap-ui-libs="sap.m,sap.ui.core,sap.ui.model.odata.v2"
-      data-sap-ui-resourceroots='{
-        "inventory.app": "./"
-      }'
+      data-sap-ui-resourceroots='{"inventory.app": "./"}'
       data-sap-ui-async="true">
     </script>
-
     <script>
       sap.ui.getCore().attachInit(function () {
         new sap.ui.core.ComponentContainer({
@@ -26,8 +21,5 @@
       });
     </script>
   </head>
-
-  <body class="sapUiBody" id="content">
-    <!-- ✅ Don’t put anything except container -->
-  </body>
+  <body class="sapUiBody" id="content"></body>
 </html>
