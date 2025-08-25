@@ -1,6 +1,7 @@
 applications:
 - name: warehouse-tracker
   memory: 128M
+  instances: 1
   path: webapp
   buildpacks:
     - https://github.com/cloudfoundry/staticfile-buildpack.git
