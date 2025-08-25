@@ -1,21 +1,23 @@
 <mvc:View
-  controllerName="inventory.app.controller.Inventory"
+  controllerName="inventoryapp.controller.Inventory"
   xmlns:mvc="sap.ui.core.mvc"
   xmlns="sap.m">
-  <Page title="Warehouse Inventory">
-    <Table id="inventoryTable" items="{/A_MaterialStock}">
-      <columns>
-        <Column><Text text="Material"/></Column>
-        <Column><Text text="Stock"/></Column>
-      </columns>
-      <items>
-        <ColumnListItem>
-          <cells>
-            <Text text="{Material}"/>
-            <Text text="{Stock}"/>
-          </cells>
-        </ColumnListItem>
-      </items>
-    </Table>
+
+  <Page title="Inventory Overview">
+    <content>
+      <List items="{/Inventory}">
+        <CustomListItem>
+          <HBox justifyContent="SpaceBetween" alignItems="Center">
+            <VBox>
+              <Title text="{Material}" />
+              <ObjectAttribute text="Bin: {BinID}" />
+              <ObjectAttribute text="Plant: {Plant}" />
+              <ObjectAttribute text="Movement: {Movement}" />
+            </VBox>
+            <ObjectNumber number="{Quantity}" unit="Qty"/>
+          </HBox>
+        </CustomListItem>
+      </List>
+    </content>
   </Page>
 </mvc:View>
